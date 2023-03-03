@@ -1,0 +1,42 @@
+//Class to register a student with a unique id, 
+//Constructor takes in a student name  and returns list of registered studentsin java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Student {
+    private static int nextId = 1; // static variable to assign unique IDs to students
+    private int id;
+    private String name;
+
+    private static List<Student> students = new ArrayList<>(); // list to store registered students
+
+    public Student(String name) {
+        this.id = nextId++;
+        this.name = name;
+        students.add(this);
+    }
+
+    public static List<Student> getStudents() {
+        return students;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+	
+	public static void main[String [] args] {
+		Student stud1 = new Student("Jay");
+		Student stud2 = new Student("Wambida");
+		Student stud3 = new Student("Peninnah");
+		
+		List<Student> students = Student.getStudents();
+		for(Student student : students){
+			System.out.println("Student is:" + student.getId() + " " + student.getName());
+		}
+	}
+}
+
