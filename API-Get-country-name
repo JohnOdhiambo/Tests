@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+//Given a country name, query a REST API to return name of the country and capital city in java 
+
+public class CountryInfo {
+	//function to get the capital city
+	public static String getCapitalCity(String countryName) {
+        String apiUrl = "https://restcountries.com/v2/name/" + countryName;
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // Parse the JSON response to extract the capital city
+            String capital = response.substring(response.indexOf("capital") + 10, response.indexOf(",", response.indexOf("capital")) - 1);
+
+            return capital;
+        } catch (IOException e) {
+            System.out.println("Error connecting to API: " + e.getMessage());
+            return null;
+        }
+    }
+	
+    public static void main(String[] args) {
+        String countryName = "Germany"; // replace with the name of the country you're interested in
+        String apiUrl = "https://restcountries.com/v2/name/" + countryName;
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // Parse the JSON response to extract the country name and capital city
+            String name = response.substring(response.indexOf("name") + 7, response.indexOf(",", response.indexOf("name")) - 1);
+            String capital = response.substring(response.indexOf("capital") + 10, response.indexOf(",", response.indexOf("capital")) - 1);
+
+            System.out.println("Country: " + name);
+            System.out.println("Capital city: " + capital);
+        } catch (IOException e) {
+            System.out.println("Error connecting to API: " + e.getMessage());
+        }
+    }
+}

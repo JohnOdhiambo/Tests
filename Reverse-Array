@@ -1,0 +1,17 @@
+//reverse an array using indexes and loops in Java:
+public static void reverseArray(int[] arr) {
+	int leftArr = 0;
+	int rightArr = arr.length -1;
+	
+	while( leftArr < rightArr) {
+		int temp = arr[leftArr];
+		arr[leftArr] = arr[rightArr];
+		arr[rightArr] = temp;
+		
+		leftArr ++; //move the leftArr to the rightArr
+		
+		rightArr --; // move the rightArr to the leftArr
+		
+	}
+}
+//reverse array using index and loop rather than a built-in function and call the method in java
