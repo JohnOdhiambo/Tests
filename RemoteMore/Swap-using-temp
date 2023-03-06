@@ -1,0 +1,16 @@
+#Swap using a temp variable
+def swap(a, b):
+    temp = a
+    a = b
+    b = temp
+
+x = 1
+y = 2
+
+swap(x, y)
+print(x, y)
+#Output is 1 2 since the swap function doesn't actually swap the values of a and b in the main program.
+# swap(x, y), the values of x and y are passed by value to the function
+#Inside the function, the values are swapped and stored in the local variables a and b. 
+#However, these variables are not accessible outside of the function.
+#Therefore, alues of x and y remain unchanged in the main program and the output is 1 2.

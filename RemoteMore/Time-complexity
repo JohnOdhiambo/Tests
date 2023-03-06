@@ -1,0 +1,13 @@
+#What is the time complexity in
+def find_duplicate(arr):
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            if arr[i] == arr[j]:
+                return arr[i]
+    return None
+
+#The time complexity  is O(n^2), where n is the length of the input array arr.
+#The outer loop iterates over each element in the array once, which takes O(n) time.
+#The inner loop iterates over the remaining elements in the array
+#for each element in the outer loop, which takes O(n-1) + O(n-2) + ... + O(1) time, which is equivalent to O(n^2).
+#Therefore, the overall time complexity of the function is O(n^2).
