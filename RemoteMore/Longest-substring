@@ -1,0 +1,19 @@
+#The function takes a string s as input & returns the length of the longest substring of s with no repeated characters.
+def find_longest_substring(s):
+    substring = ""
+    max_length = 0
+    for i in range(len(s)):
+        for j in range(i, len(s)):
+            if s[j] not in substring:
+                substring += s[j]
+            else:
+                if len(substring) > max_length:
+                    max_length = len(substring)
+                substring = s[j]
+    return max_length
+
+print(find_longest_substring("abcabcbb"))
+
+#Iterating through all possible substrings of s, and for each substring, checking if any characters are repeated.
+#If a character is repeated, the length of the current substring is compared to the maximum length seen so far,
+#and the maximum length is updated if necessary. The function then starts a new substring from the repeated character.

@@ -1,0 +1,14 @@
+#It takes a list of integers arr & rearranges its elements such that all non-negative elements come before all negative elements,
+#while preserving their relative order.
+def defragment(arr: List[int]) -> List[int]:
+    next_free_pos = 0
+    for i in range(len(arr)):
+        if arr[i] != -1:
+            arr[next_free_pos], arr[i] = arr[i], arr[next_free_pos]
+            next_free_pos += 1
+    return arr
+    
+ 
+#It iterates through the list and swapping non-negative elements with the element at the current next free position
+#Time complexity of the defragment function is O(n), where n is the length of the input list arr.
+#since the function iterates over each element in the list exactly once

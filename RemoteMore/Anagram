@@ -1,0 +1,26 @@
+#function to deteremine how many anagrams exist in the string. 
+#An anagram is a new word that is produced from rearranging the characters in a different word,e.g.cars and arcs are anagrams.
+#Your program should determine how many anagrams exist in a given string and return the total number.
+from collections import Counter
+
+def count_anagrams(s: str) -> int:
+    # Create a Counter object for the original string
+    s_count = Counter(s)
+    
+    # Initialize a variable to keep track of the number of anagrams
+    num_anagrams = 0
+    
+    # Loop over all substrings of s
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            # Create a Counter object for the substring
+            sub_count = Counter(s[i:j])
+            
+            # If the Counter objects are equal, the substring is an anagram of the original string
+            if s_count == sub_count:
+                num_anagrams += 1
+                
+    return num_anagrams
+
+#It uses the Counter class from the collections module to count the no. of occurrences of each character in the string.
+# Then it loops over all possible substrings of the string & counts the no. of substrings that are anagrams of the original string.

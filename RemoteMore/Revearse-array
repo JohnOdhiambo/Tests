@@ -1,0 +1,24 @@
+//The function takes an input array arr, and returns the same array with its elements reversed.
+function process(arr) {
+    var left = 0;
+    var right = arr.length - 1;
+    while (left < right) {
+        var temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+        left++;
+        right--;
+    }
+    return arr;
+}
+
+//It initializing two pointers left and right to the start and end of the array respectively
+//Repeatedly swaps the elements at those positions until the pointers meet in the middle.
+//Time complexity of the process function is O(n), where n is the length of the input array arr.
+//The function iterates over half of the array, swapping elements at each iteration. 
+//Therefore, the no. of operations performed by the function is proportional to n/2, which simplifies to O(n).
+
+
+
+
+

@@ -1,0 +1,22 @@
+#The function takes a string s as input and returns the longest palindrome substring of s.
+def xyz(s: str) -> str:
+    if not s:
+        return ""
+
+    n = len(s)
+    dp = [[False] * n for _ in range(n)]
+    ans = ""
+    max_len = 0
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            dp[i][j] = s[i] == s[j] and (j - i <= 2 or dp[i + 1][j - 1])
+            if dp[i][j] and j - i + 1 > max_len:
+                max_len = j - i + 1
+                ans = s[i:j + 1]
+    return ans
+
+#It initializes a 2-dimensional array dp to store whether a substring from i to j of s is a palindrome or not
+# iterates over all possible substrings of s, starting with the longest ones, 
+#and checks whether they are palindromes using the dp array. 
+#If a palindrome substring is found that is longer than the current longest palindrome,
+#the function updates the maximum length and the answer substring.
