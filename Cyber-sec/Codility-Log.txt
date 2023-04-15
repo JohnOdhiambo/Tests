@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+LOG_FILE="$1"
+
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <access_log_path>"
+  exit 1
+fi
+
+# Extract the top 10 most frequently accessed URLs
+echo "Top 10 URLs:"
+awk '{print $7}' $1 | sort | uniq -c | sort -rn | head -n 10
+
+# Extract the top 10 most common user agents
+echo "Top 10 User Agents:"
+awk -F'"' '{print $6}' $1 | sort | uniq -c | sort -rn | head -n 10
+
+# Extract the number of requests per HTTP status code
+echo "Requests by HTTP Status Code:"
+awk '{print $9}' $1 | sort | uniq -c | sort -rn
+
+# Extract the number of requests per hour of the day
+echo "Requests by Hour of Day:"
+awk '{print $4}' $1 | awk -F: '{print $2}' | sort | uniq -c | sort -rn
+
+# Extract the number of requests per day of the week
+echo "Requests by Day of Week:"
+awk '{print $4}' $1 | awk '{print substr($0, 2, 12)}' | date +%A -f - | sort | uniq -c | sort -rn
+
+# Extract the number of requests by IP address
+echo "Requests by IP Address:"
+awk '{print $1}' $1 | sort | uniq -c | sort -rn
